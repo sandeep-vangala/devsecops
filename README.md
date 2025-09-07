@@ -1,3 +1,5 @@
+
+use this to test: https://github.com/juice-shop/juice-shop
 # Application Security Testing Notes
 
 ## Static Application Security Testing (SAST)
@@ -403,4 +405,17 @@ Below is a detailed overview of the **18 CIS Controls** with their relevance to 
 
 **Source**: [CIS Critical Security Controls List](https://www.cisecurity.org/controls/cis-controls-list)[](https://www.cisecurity.org/controls/cis-controls-list)
 
-</xaiArtifact>
+CVEs:
+
+CVE(common vulnerbilities and exposures) identify, define and catalogue publicly disclosed cybersecurity vulnerabilities.
+It is important to stay aware of relevant CVEs for  the techstack that you or your company use.
+It is maintained by mitre(a us non profit)
+
+CVSS (common vulnerability scoring system)
+standard for assessing severity of security vulnerabilities.
+scores calculated based on separate metrics, given a score 0-10
+used by CVEs
+
+EPSS(exploit protection scoring system)
+
+CISA(cybersecurity and infrastructure security agency) 
