@@ -63,9 +63,207 @@ Security should be integrated into the development process to prevent vulnerabil
 * **Dependency Monitoring**: Automatically scan third-party libraries and dependencies for known vulnerabilities and outdated components.
 
 ---
+Absolutely! Below is a structured version of the **enhanced security framework** formatted in three ways as you requested:
 
-### ✅ Final Summary
+1. ✅ **Documentation style** (for handbooks or wiki pages)
+2. ✅ **Slide deck outline** (for presentations)
+3. ✅ **Checklist format** (for audits or implementation tracking)
 
-A robust security posture requires a layered approach that starts from infrastructure, spans across the Kubernetes cluster, extends into container runtime configurations, and integrates into the development pipeline. By combining AWS best practices, Kubernetes security standards, container hardening, and continuous scanning in CI/CD workflows, you create a resilient system designed to minimize risks, enforce compliance, and quickly respond to emerging threats.
+---
+
+## 📘 1. Documentation Style – Security Framework Guide
+
+---
+
+### **Securing Kubernetes Applications on AWS EKS: A Layered Approach**
+
+This document outlines best practices for securing cloud infrastructure, Kubernetes clusters, containers, and CI/CD pipelines using AWS and associated tooling. The framework is organized into four layers, each addressing specific security concerns and mitigation strategies.
+
+---
+
+### **1. Cloud Layer (AWS / EKS)**
+
+Securing the foundational environment that hosts workloads.
+
+**Best Practices:**
+
+* **Private Endpoints**: Use private subnets and AWS PrivateLink to restrict access to EKS, ECR, and other services from the public internet.
+* **IAM Least Privilege**: Assign permissions using fine-grained IAM policies. Avoid granting full administrative rights unless necessary.
+* **Encryption**:
+
+  * Enable TLS for communication between services.
+  * Use AWS KMS to encrypt data at rest and manage encryption keys securely.
+* **Monitoring & Auditing**:
+
+  * Enable AWS CloudTrail for logging API activity.
+  * Use AWS GuardDuty for threat detection.
+  * Configure AWS Config for compliance monitoring.
+
+---
+
+### **2. Cluster Layer (EKS / Kubernetes)**
+
+Securing the Kubernetes environment where workloads are orchestrated.
+
+**Best Practices:**
+
+* **Role-Based Access Control (RBAC)**:
+
+  * Implement role definitions with minimal privileges.
+  * Avoid cluster-wide permissions where unnecessary.
+* **Network Policies**:
+
+  * Restrict traffic flows between workloads.
+  * Apply ingress and egress rules to prevent unauthorized access.
+* **Pod Security Standards (PSS)**:
+
+  * Enforce non-root containers.
+  * Drop unnecessary Linux capabilities.
+  * Use AppArmor or SELinux for runtime confinement.
+* **Secrets Management**:
+
+  * Store sensitive data using Kubernetes Secrets.
+  * Encrypt secrets at rest and ensure RBAC policies limit access.
+
+---
+
+### **3. Container Layer (Docker / OCI)**
+
+Securing container images and runtime execution environments.
+
+**Best Practices:**
+
+* **Use Trusted Base Images**:
+
+  * Minimize attack surfaces by choosing slim, regularly updated images.
+* **Non-Root Execution**:
+
+  * Define user permissions in the Dockerfile to avoid root-level access.
+* **Image Scanning**:
+
+  * Integrate scanning tools like Trivy or Clair in the build process.
+  * Automatically reject vulnerable images before deployment.
+* **Runtime Security**:
+
+  * Limit filesystem permissions.
+  * Avoid mounting host volumes unless necessary.
+
+---
+
+### **4. Code Layer (GitHub Actions / CI/CD)**
+
+Securing application code and build pipelines.
+
+**Best Practices:**
+
+* **Static Application Security Testing (SAST)**:
+
+  * Analyze source code to detect vulnerabilities early.
+* **Dynamic Application Security Testing (DAST)**:
+
+  * Perform tests against running services to find runtime vulnerabilities.
+* **Defect Tracking**:
+
+  * Use DefectDojo to track and manage vulnerabilities across pipelines.
+* **Secrets Handling**:
+
+  * Store sensitive data in GitHub Secrets or HashiCorp Vault.
+  * Avoid hardcoding secrets in configuration files.
+* **Dependency Management**:
+
+  * Scan for vulnerable or outdated libraries regularly.
+
+---
+
+### 📌 Conclusion
+
+Security is not a one-time setup but an ongoing process that integrates infrastructure controls, runtime hardening, and continuous testing. By following this layered framework, organizations can build secure and resilient Kubernetes applications on AWS.
+
+---
+
+## 📊 2. Slide Deck Outline – Security for Kubernetes on AWS
+
+---
+
+**Slide 1: Title**
+🔒 Securing Kubernetes Applications on AWS EKS – A Layered Approach
+
+---
+
+**Slide 2: Agenda**
+
+1. Cloud Security (AWS/EKS)
+2. Cluster Security (Kubernetes)
+3. Container Security (Docker)
+4. Code & Pipeline Security (GitHub Actions)
+5. Summary and Recommendations
+
+---
+
+**Slide 3: Cloud Layer – AWS/EKS**
+✔ Private Endpoints
+✔ IAM Least Privilege
+✔ Data Encryption
+✔ Monitoring & Auditing
+
+---
+
+**Slide 4: Cluster Layer – EKS / Kubernetes**
+✔ RBAC for access control
+✔ Network Policies to restrict traffic
+✔ Pod Security Standards
+✔ Secrets encryption and management
+
+---
+
+**Slide 5: Container Layer – Docker**
+✔ Use secure base images
+✔ Avoid running as root
+✔ Image vulnerability scanning
+✔ Runtime hardening practices
+
+---
+
+**Slide 6: Code Layer – GitHub Actions**
+✔ SAST and DAST scans
+✔ Integration with DefectDojo
+✔ Secure secrets management
+✔ Dependency scanning
+
+---
+
+**Slide 7: Integration Example**
+Diagram showing how data flows from GitHub Actions → ECR → EKS → CloudWatch/Prometheus → monitoring dashboards
+
+---
+
+**Slide 8: Conclusion**
+🔑 Security must be integrated across all layers
+⚙ Automate scans and audits
+📈 Build resilient, compliant systems
+
+---
+
+## ✅ 3. Checklist Format – Implementation Tracker
+
+| Layer     | Security Practice               | Implementation Status                   | Notes                                        |
+| --------- | ------------------------------- | --------------------------------------- | -------------------------------------------- |
+| Cloud     | Use Private Endpoints           | ☐ Not started ☐ In progress ☐ Completed | AWS PrivateLink or VPC endpoints configured  |
+| Cloud     | IAM Least Privilege             | ☐ Not started ☐ In progress ☐ Completed | Avoid full admin roles                       |
+| Cloud     | Enable TLS & Encryption         | ☐ Not started ☐ In progress ☐ Completed | TLS for services, KMS encryption enabled     |
+| Cloud     | Enable Audit & Monitoring       | ☐ Not started ☐ In progress ☐ Completed | CloudTrail, GuardDuty, AWS Config configured |
+| Cluster   | Implement RBAC                  | ☐ Not started ☐ In progress ☐ Completed | Defined roles and bindings                   |
+| Cluster   | Apply Network Policies          | ☐ Not started ☐ In progress ☐ Completed | Traffic restrictions enforced                |
+| Cluster   | Enforce Pod Security Standards  | ☐ Not started ☐ In progress ☐ Completed | Non-root, limited capabilities               |
+| Cluster   | Use Kubernetes Secrets          | ☐ Not started ☐ In progress ☐ Completed | Secrets encrypted and restricted             |
+| Container | Use Trusted Images              | ☐ Not started ☐ In progress ☐ Completed | Base images regularly updated                |
+| Container | Run as Non-Root                 | ☐ Not started ☐ In progress ☐ Completed | Defined user in Dockerfile                   |
+| Container | Scan Images for Vulnerabilities | ☐ Not started ☐ In progress ☐ Completed | Trivy integrated                             |
+| Container | Harden Runtime                  | ☐ Not started ☐ In progress ☐ Completed | Filesystem and permissions configured        |
+| Code      | Enable SAST                     | ☐ Not started ☐ In progress ☐ Completed | Static scans implemented                     |
+| Code      | Enable DAST                     | ☐ Not started ☐ In progress ☐ Completed | Runtime scans executed                       |
+| Code      | Integrate Defect Tracking       | ☐ Not started ☐ In progress ☐ Completed | DefectDojo or equivalent integrated          |
+| Code      | Secure Secrets                  | ☐ Not started ☐ In progress ☐ Completed | Secrets stored securely                      |
+| Code      | Scan Dependencies               | ☐ Not started ☐ In progress ☐ Completed | Automated scanning pipelines configured      |
 
 ---
